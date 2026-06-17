@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app1/provider/cart_provider.dart';
 import 'package:ecommerce_app1/provider/order_provider.dart';
 
@@ -12,7 +11,6 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
