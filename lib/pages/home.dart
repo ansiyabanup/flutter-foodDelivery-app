@@ -1,4 +1,4 @@
-import 'package:ecommerce_app1/provider/Cart_provider.dart';
+import 'package:ecommerce_app1/provider/cart_provider.dart';
 import 'package:ecommerce_app1/provider/productprovider.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +12,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      context.read<ProductProvider>().fetchProducts();
-    });
-  }
+  
+@override
+void initState() {
+  super.initState();
+
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (!mounted) return;
+
+    context.read<ProductProvider>().fetchProducts();
+  });
+}
 
   @override
   Widget build(BuildContext context) {

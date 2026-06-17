@@ -1,14 +1,19 @@
 
-import 'package:ecommerce_app1/provider/Cart_provider.dart';
+import 'package:ecommerce_app1/provider/cart_provider.dart';
 import 'package:ecommerce_app1/provider/order_provider.dart';
 import 'package:ecommerce_app1/services/upi_payment_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:upi_india/upi_response.dart';
 
-class Cartpage extends StatelessWidget {
+class Cartpage extends StatefulWidget {
   const Cartpage({super.key});
 
+  @override
+  State<Cartpage> createState() => _CartpageState();
+}
+
+class _CartpageState extends State<Cartpage> {
   @override
   Widget build(BuildContext context) {
     final cartProvider = context.watch<CartProvider>();
@@ -69,6 +74,8 @@ class Cartpage extends StatelessWidget {
                           final paymentService = UpiPaymentService();
                           final response =await paymentService
                               .startUpiPayment(cartProvider.totalPrice);
+
+                              if(!context.mounted) return;
 
                           if (cartProvider.items.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(

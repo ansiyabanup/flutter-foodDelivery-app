@@ -17,18 +17,17 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController confirmpasswordcontroller =
       TextEditingController();
 
-  
   Future<void> register() async {
-    
-    final _authService = AuthService();
-   
+    final authService = AuthService();
+
     if (passwordcontroller.text == confirmpasswordcontroller.text) {
-     
       try {
-        await _authService.signUpWithEmailPassword(
+        await authService.signUpWithEmailPassword(
             emailcontroller.text, passwordcontroller.text);
-      } 
-      catch (e) {
+
+        if (!mounted) return;
+      } catch (e) {
+        if (!mounted) return;
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
@@ -36,14 +35,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 ));
       }
     } else {
+      if (!mounted) return;
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
                 title: Text("Passwords do not match"),
               ));
     }
-
- 
   }
 
   @override

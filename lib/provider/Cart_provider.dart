@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import '../models/cart_model.dart';
 import '../models/product_model.dart';
@@ -10,7 +9,7 @@ class CartProvider with ChangeNotifier {
   List<CartItem> get items => _items;
 
   double get totalPrice => _items.fold(
-      0, (sum, item) => sum + (item.product.price * item.quantity));
+      0, (sumTotal, item) => sumTotal + (item.product.price * item.quantity));
 
   void addToCart(Product product) {
     final index = _items.indexWhere((item) => item.product.id == product.id);
@@ -23,8 +22,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void removeFromCart(Product product) {
-    
-     final index = _items.indexWhere((item) => item.product.id == product.id);
+    final index = _items.indexWhere((item) => item.product.id == product.id);
     if (index >= 0) {
       if (_items[index].quantity > 1) {
         _items[index].quantity -= 1;
@@ -35,14 +33,12 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-
-
   void clearCart() {
     _items.clear();
     notifyListeners();
   }
 
-/// Save order to Firestore
+  /// Save order to Firestore
   // Future<void> saveOrder() async {
   //   if (_items.isEmpty) return;
 
@@ -67,5 +63,4 @@ class CartProvider with ChangeNotifier {
 
   //   clearCart();
   // }
-
 }

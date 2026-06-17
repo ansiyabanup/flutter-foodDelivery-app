@@ -8,7 +8,7 @@ class UpiPaymentService {
       final apps = await _upiIndia.getAllUpiApps();
 
       if (apps.isEmpty) {
-        print("No UPI apps found");
+        
         return null;
       }
 
@@ -23,7 +23,6 @@ class UpiPaymentService {
 
       return response;
     } catch (e) {
-      print("Error: $e");
       return null;
     }
   }

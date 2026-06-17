@@ -17,12 +17,15 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordcontroller = TextEditingController();
 
   void login() async {
-    final _authService = AuthService();
+    final authService = AuthService();
 
     try {
-      await _authService.signInWithEmailPassword(
+      await authService.signInWithEmailPassword(
           emailcontroller.text, passwordcontroller.text);
+
+      if (!mounted) return;
     } catch (e) {
+      if (!mounted) return;
       showDialog(
           context: context,
           builder: (context) => AlertDialog(

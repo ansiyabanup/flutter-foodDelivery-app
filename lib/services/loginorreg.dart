@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({super.key});
   @override
-  _LoginOrRegisterState createState() => _LoginOrRegisterState();
+  LoginOrRegisterState createState() => LoginOrRegisterState();
 }
 
-class _LoginOrRegisterState extends State<LoginOrRegister> {
+class LoginOrRegisterState extends State<LoginOrRegister> {
   bool showLogin = true;
 
   void togglePages() {

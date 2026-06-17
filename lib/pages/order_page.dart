@@ -1,12 +1,6 @@
 import 'package:ecommerce_app1/pages/order_details_screen.dart';
 import 'package:ecommerce_app1/provider/order_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-
-
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 

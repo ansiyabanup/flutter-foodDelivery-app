@@ -1,5 +1,5 @@
-import 'package:ecommerce_app1/bootomnav.dart';
-import 'package:ecommerce_app1/provider/Cart_provider.dart';
+
+import 'package:ecommerce_app1/provider/cart_provider.dart';
 import 'package:ecommerce_app1/provider/order_provider.dart';
 
 import 'package:ecommerce_app1/provider/productprovider.dart';
