@@ -8,7 +8,6 @@ class UpiPaymentService {
       final apps = await _upiIndia.getAllUpiApps();
 
       if (apps.isEmpty) {
-        
         return null;
       }
 

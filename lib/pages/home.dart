@@ -12,17 +12,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-@override
-void initState() {
-  super.initState();
+  @override
+  void initState() {
+    super.initState();
 
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (!mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
 
-    context.read<ProductProvider>().fetchProducts();
-  });
-}
+      context.read<ProductProvider>().fetchProducts();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
