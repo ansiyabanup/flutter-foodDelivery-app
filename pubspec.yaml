@@ -42,6 +42,8 @@ dependencies:
   cloud_firestore: 
   http: ^1.6.0
   upi_india: ^3.0.1
+  flutter_stripe: ^13.0.0
+  dio: ^5.9.2
 
 dev_dependencies:
   flutter_test:

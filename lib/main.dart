@@ -1,11 +1,11 @@
-
-import 'package:ecommerce_app1/provider/cart_provider.dart';
 import 'package:ecommerce_app1/provider/order_provider.dart';
+import 'package:ecommerce_app1/provider/product_cart_provider.dart';
 
 import 'package:ecommerce_app1/provider/productprovider.dart';
 import 'package:ecommerce_app1/services/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';

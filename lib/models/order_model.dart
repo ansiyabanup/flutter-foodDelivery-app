@@ -5,7 +5,7 @@ class OrderModel {
   final List<CartItem> items;
   final double total;
   final DateTime date;
-   String status;
+  String status;
 
   OrderModel({
     required this.id,

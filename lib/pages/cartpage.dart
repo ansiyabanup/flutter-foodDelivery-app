@@ -1,10 +1,7 @@
+import 'package:ecommerce_app1/provider/product_cart_provider.dart';
 
-import 'package:ecommerce_app1/provider/cart_provider.dart';
-import 'package:ecommerce_app1/provider/order_provider.dart';
-import 'package:ecommerce_app1/services/upi_payment_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:upi_india/upi_response.dart';
 
 class Cartpage extends StatefulWidget {
   const Cartpage({super.key});
@@ -65,94 +62,6 @@ class _CartpageState extends State<Cartpage> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 12),
-                      ElevatedButton(
-                        onPressed: () async{
-                          final cartProvider = context.read<CartProvider>();
-
-                          final orderProvider = context.read<OrderProvider>();
-
-                          final paymentService = UpiPaymentService();
-                          final response =await paymentService
-                              .startUpiPayment(cartProvider.totalPrice);
-
-                              if(!context.mounted) return;
-
-                          if (cartProvider.items.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Cart is empty')),
-                            );
-                            return;
-                          }
-
-                          if (response == null) return;
-
-                          switch(response.status) {
-                            case UpiPaymentStatus.SUCCESS:
-
-                              orderProvider.placeOrder
-                              (cartProvider.items,
-                                  cartProvider.totalPrice);
-
-                              cartProvider.clearCart();
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Sucessfully paid')),
-                              );
-
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (_) => const OrdersScreen(),
-                              //   ),
-                              // );
-                              break;
-
-                            case UpiPaymentStatus.FAILURE:
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Payment failed')),
-                              );
-                              break;
-
-                              default:
-                           
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Payment pending')),
-                              );
-                            
-                            
-                          }
-
-                          // showDialog(
-                          //   context: context,
-                          //   builder: (_) => AlertDialog(
-                          //     title: const Text('Mock Payment Sucessdul'),
-                          //     content: Text(
-                          //         'Payment of ₹${cartProvider.totalPrice.toStringAsFixed(2)} successful!'),
-                          //     actions: [
-                          //       TextButton(
-                          //         onPressed: () async {
-                          //           // Save order (locally for now)
-                          //           await startUpipayment(
-                          //               cartProvider.totalPrice);
-                          //           orderProvider.placeOrder(cartProvider.items,
-                          //               cartProvider.totalPrice);
-                          //           cartProvider.clearCart();
-                          //           Navigator.pop(context);
-                          //           Navigator.push(
-                          //             context,
-                          //             MaterialPageRoute(
-                          //               builder: (_) => const OrdersScreen(),
-                          //             ),
-                          //           );
-                          //         },
-                          //         child: const Text('OK'),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // );
-                        },
-                        child: const Text('Pay with upi'),
-                      ),
                     ],
                   ),
                 ),
